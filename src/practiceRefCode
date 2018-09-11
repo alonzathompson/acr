@@ -1,0 +1,141 @@
+const express = require('express');
+const smartcard = require('smartcard');
+var ab2str = require('arraybuffer-to-string');
+const fs = require('fs');
+const Devices = smartcard.Devices;
+const devices = new Devices();
+const Iso7816Application = smartcard.Iso7816Application;
+
+let currentDevices = [];
+let CommandApdu = smartcard.CommandApdu;
+let authObj = {};
+
+console.log(devices.listDevices());
+
+devices.on('device-activated', event => {
+  console.log("Reader added :" + event.device);
+
+  let device = event.device;
+
+  device.on('card-inserted', event => {
+    let card = event.card;
+
+    console.log(`Card '${card.getAtr()}' inserted into '${event.device}'`);
+
+    card.on('command-issued', event => {
+        console.log(`Command '${event.command}' issued to '${event.card}' `);
+    });
+
+    card.on('response-received', event => {
+        console.log(`Response '${event.response}' received from '${event.card}' in response to command'${event.command}'`);
+    });
+
+    card
+      .issueCommand("FF CA 00 00 00")//gets UID/serial number/enumeration identifier/
+      .then((response) => {
+          console.log(`Response '${response.toString('hex')}`);
+          console.log(`Response ${ab2str(response)}`);
+      }).catch((error) => {
+          console.error(error);
+      });
+
+      //Loads authentication key(which is 6 bytes)  after the first 5 bytes (first 5 is the apdu command)
+      /*card
+      .issueCommand("FF 82 00 00 06 FF FF FF FF FF FF")//command works load authentication keys
+      .then((response) => {
+          authObj.loadAuthRes = `${response.toString('hex')}`;
+          console.log(`Response '${response.toString('hex')}`);
+      }).catch((error) => {
+          console.error(error);
+      });*/
+
+      /*card
+      .issueCommand("FF 00 00 00 0F D4 40 01 60 00 FF FF FF FF FF FF 6E E6 E1 23")//AUTHENTICATE KEY
+      .then((response) => {
+          console.log(`Response '${response.toString('hex')}`);
+      }).catch((error) => {
+          console.error(error);
+      });*/
+
+     /*card
+      .issueCommand("FF 00 40 CF 04 03 00 01 01")//works turns led to orange
+      .then((response) => {
+          console.log(`Response '${response.toString('hex')}`);
+      }).catch((error) => {
+          console.error(error);
+      });
+
+      card
+      .issueCommand("FF 00 52 00 00")//works reads id 
+      .then((response) => {
+          console.log(`Response '${response.toString('hex')}`);
+          console.log(`Response ${ab2str(response)}`);
+      }).catch((error) => {
+          console.error(error);
+      });
+
+      card
+      .issueCommand("FF B0 00 04 10")//APDU for reading data blocks first 2 bytes establish read and third byte is block 4th byte is length
+      .then((response) => {
+          console.log(`Response '${response.toString('hex')}`);
+          console.log(`Response ${ab2str(response)}`);
+      }).catch((error) => {
+          console.error(error);
+      });*/
+
+      for (let i = 0; i < 10; i++){
+          //let arr = ["A","B","C","D","E","F"];
+            card
+            .issueCommand(`FF B0 00 0${i} 10`)//
+            .then((response) => {
+                let answers = [];
+                answers.push(ab2str(response));
+                console.log(`Response ${i} '${response.toString('hex')}`);
+                console.log(`Response ${ab2str(response)}`);
+                console.log(answers);
+            }).catch((error) => {
+                console.error(error);
+            });
+      }
+      
+     
+      
+      //console.log(authObj.readData, authObj.loadAuthRes);
+
+    /*const application = new Iso7816Application(card);
+        application.getData("0xa4", "0x00").then((data) => {
+            console.log(data)
+        }).catch(err => console.log(err));
+
+        application.selectFile([0xFF, 0xB0, 0x00, 0x04, 0x10])
+            .then(response => {
+                console.info(`Select PSE Response: '${response}' '${response.meaning()}'`);
+            }).catch(error => {
+                console.error('Error:', error, error.stack);
+            });*/
+  });
+
+    device.on('card-removed', event => {
+      console.log(`Card removed from '${event.name}' `);
+  });
+});
+
+
+
+
+if(i > 9){
+                         
+                        card
+                        .issueCommand(`FF B0 00 0${arr[c]} 10`)//
+                        .then((response) => {
+                            carData.dataBlock.block[i] = response.toString('hex');
+                            let answers = [];
+                            answers.push(ab2str(response));
+                            console.log(`Response ${i} '${response.toString('hex')}`);
+                            console.log(`Response ${ab2str(response)}`);
+                            console.log(answers);
+                            c++;
+                        }).catch((error) => {
+                            console.error(error);
+                        });
+                    }

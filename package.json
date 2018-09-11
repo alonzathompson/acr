@@ -1,0 +1,25 @@
+{
+  "name": "uart-practice",
+  "version": "1.0.0",
+  "description": "uart",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepdb": "cd ../../../../Desktop && bash startMongo.sh",
+    "firstStart": "npm run prepdb && nodemon index.js"
+  },
+  "author": "alonza thompson",
+  "license": "ISC",
+  "dependencies": {
+    "arraybuffer-to-string": "^1.0.2",
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.2.12",
+    "morgan": "^1.9.0",
+    "smartcard": "^1.0.23",
+    "socket.io": "^2.1.1",
+    "uuid": "^3.3.2"
+  }
+}

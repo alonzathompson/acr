@@ -1,0 +1,12 @@
+{{> header heading=title}}
+<div>
+    <div>
+        <h1>Device {{device}}</h1>
+        <h2>Type: {{type}}</h2>
+    </div>
+</div>
+<div>
+    <div>
+      {{> results all=asciiData getData=getAsciiData raw=rawData}}
+    </div>
+</div>

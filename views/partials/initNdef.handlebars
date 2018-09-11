@@ -1,0 +1,20 @@
+<div>
+    <button id="initNdef">initialize Ndef</button>
+    <span id="ndefStatus"></span>
+</div>
+<script>
+    let ndef = document.getElementById('initNdef');
+    let ndefStatus = document.getElementById('ndefStatus');
+
+    ndef.onclick = () => {
+        fetch('http://localhost:3000/initNdef')
+        .then((res) => {
+            return res.json();
+        }).then((status) => {
+            console.log("status", status.message, JSON.stringify(status.message));
+            ndefStatus.innerHTML = JSON.stringify(status.message, status.ndef);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+</script>
