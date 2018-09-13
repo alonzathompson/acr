@@ -23,8 +23,9 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', hb({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use('/assets', express.static('assets'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const server = app.listen(port, () => {
     console.log("App listening on port 3000")
@@ -40,7 +41,7 @@ app.get("/", (req,res) => {
      });*/
 
     res.render('home', {
-        title: "RFID login tracker",
+        title: "Employee tracker",
         device: a.data.device,
         type: a.data.type,
         UID: a.data.UID,
@@ -86,5 +87,7 @@ io.on('connection', (socket) => {
         a.writeUser(data.email, data.pass);
     })
 
-    
+    socket.on("getAllUsers", function(data){ 
+        socket.emit("getAllUsers", a.data.cardUsers);
+    });
 })

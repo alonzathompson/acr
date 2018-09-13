@@ -219,7 +219,6 @@ module.exports = (socket) => {
                 if(user.isLoggedIn === true){
                     cardData.cardUsers.push(user);
                     socket.emit("getAllUsers", cardData.cardUsers);
-                    console.log("log in", cardData.cardUsers);
                     return cardData.cardUsers;
                 }
             }
@@ -232,7 +231,6 @@ module.exports = (socket) => {
                     })
 
                     cardData.cardUsers = [...temp2];
-                    console.log("log out", cardData.cardUsers);
                     socket.emit("getAllUsers", cardData.cardUsers);
                     return cardData.cardUsers;
                 }

@@ -1,48 +1,32 @@
 <div id="results">
-    <div id="readerStatus">
+    <div id="readerStatus"></div>
 
-    </div>
-    <!--<div>
-        <h1>Read As Ascii</h1>
-        <button type="submit" id="getaD">
-            get ascii data
-        </button>
-        <span id="aData"></span>
-    </div>
-     <div>
-        <h1>Read As Raw Data</h1>
-        <button type="submit" id="getrD">
-            get raw hex data
-        </button>
-        <span id="rData"></span>
-    </div>-->
-    <div>
-        <div id="allUsers"></div>
-    </div>
-    <div>
-        <h1>Generate ID for Card</h1>
-        <form>
+        <div class="read">
             <div>
-                <input id="email" type="email" name="email" placeholder="email" required> email
+                <h2>Who's Logged In</h2>
             </div>
-            <div>
-                <input id="pass" type="password" name="pass" placeholder="password" required> password
+            <div id="allUsers"></div>
+        </div>
+        <div class="write-container">
+            <div class="write">
+                <h1>Generate ID for Card</h1>
+                <form>
+                    <div>
+                    email <input id="email" type="email" name="email" placeholder="email" required> 
+                    </div>
+                    <div>
+                    password <input id="pass" type="password" name="pass" placeholder="password" required> 
+                    </div>
+                </form>
+                <button id="writeCardID">generate unique card id</button>
+                <p id="writeMessageResponse"></p>
             </div>
-        </form>
-        <button id="writeCardID">generate unique card id</button>
-        <p id="writeMessageResponse"></p>
-    </div>
+        </div>
 </div>
 <script>
     let socket = io.connect('http://10.0.0.3:3000/');
 
     let rStatus = document.getElementById("readerStatus");
-
-    let getAsciiData = document.getElementById("getaD");
-    let aD = document.getElementById("aData");
-
-    let getRawData = document.getElementById("getrD");
-    let rD = document.getElementById("rData");
 
     let wCardId = document.getElementById("writeCardID");
     let msgRes = document.getElementById("writeMessageResponse");
@@ -51,29 +35,6 @@
     let pass = document.getElementById('pass');
 
     let allUsers = document.getElementById('allUsers')
-    
-    /*getAsciiData.onclick = () => {
-        socket.emit('readAscii',{
-            message: "getAsciiString"
-        })
-    }
-
-    socket.on('readAscii', function(data) {
-        aD.innerHTML = data.map((item, i) => {
-            if(/(\d{8})/.test(item) && item.length === 8){
-                return `<li>id#: ${item}</li>`
-
-            } else if (/(\d{2})/.test(item) && item.length === 3){
-                return `<li>age: ${item.replace(".", "")}</li>`
-            } else if (/(\d{1,})/.test(item) && item.length > 3 && item.length < 7){
-                return 
-            } else {
-                return `<li>name: ${item}</li>`
-            }
-        });
-        console.log(data);
-    });
-    */
 
     socket.on('trying', function(data) {
         rStatus.innerHTML = `<h2>${data}</h2>`;
@@ -87,21 +48,6 @@
         rStatus.innerHTML = `<h2>${data}</h2>`;
         console.log(data);
     })
-
-    /*getRawData.onclick = () => {
-        fetch('http://localhost:3000/rawhex/')
-        .then((res) => {
-            //console.log(res);
-            return res.json();
-        })
-        .then((raw) => {
-            console.log("raw",raw);
-            let allRaw = raw.rawHex;
-            rD.innerHTML = allRaw.map((item, i) => {
-                    return `<li>${item}</li>`
-            });
-        });
-    }*/
 
     wCardId.onclick = () => {
         if(email.value !== "" && email.value !== undefined && email.value !== null || pass.value !== "" && pass.value !== undefined && pass.value !== null){
