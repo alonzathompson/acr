@@ -1,2 +1,2 @@
 # acr
-A ongoing uart project using smartcard.js
+An ongoing uart project using smartcard.js
