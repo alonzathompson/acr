@@ -18,6 +18,7 @@
     "express-handlebars": "^3.0.0",
     "mongoose": "^5.2.12",
     "morgan": "^1.9.0",
+    "plivo": "^4.0.2",
     "smartcard": "^1.0.23",
     "socket.io": "^2.1.1",
     "uuid": "^3.3.2"

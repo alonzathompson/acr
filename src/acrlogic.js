@@ -1,5 +1,6 @@
 const smartcard = require('smartcard');
 let ab2str = require('arraybuffer-to-string');
+const plivo = require('./plivoUtility');
 //const Iso7816Application = smartcard.Iso7816Application;
 
 const uuid = require('uuid/v4');
@@ -8,6 +9,7 @@ const Devices = smartcard.Devices;
 const devices = new Devices();
 let currentDevices = [];
 let CommandApdu = smartcard.CommandApdu;
+
 
 const User = require("./models/user");
 console.log(devices.listDevices());
@@ -248,6 +250,7 @@ module.exports = (socket) => {
                 }
             }
 
+
             cardUtils.logIn = async () => {
                 let cardId = await cardUtils.readDataBlocks();
                 let cardIdAllUpper = cardId.toUpperCase();
@@ -264,14 +267,14 @@ module.exports = (socket) => {
                         handleUsersOut(user);
                         //console.log(cardData.cardUsers);
                         socket.emit('trying', `${user.email} ${logMsg(user)} at ${user.loginTime}`);
+                        let handleSMS = plivo(`${user.email} ${logMsg(user)} at ${user.loginTime}`);
                         return user;
                     }
                 })        
             }
-
             console.log(cardData.cardUsers);
 
-
+            
             cardUtils.logIn();
             
         });//end of device.on card-inserted
@@ -282,6 +285,34 @@ module.exports = (socket) => {
             });
 
     });//end of device.on card-activated
+
+    cardUtils.getAllUsersLogedIn = async () => {
+        let temp = new Set();
+        await User.find({}, function(err, users){
+            if(err) {
+                console.log(err);
+            } else {
+                users.forEach((user) => {
+                    if(user.isLoggedIn === true){
+                        console.log(user)
+                        temp.add(user);
+                    }
+                });
+                cardData.cardUsers = [...temp];
+            }
+        })
+    }
+
+    cardUtils.getSingleUser = async (id) => {
+        await User.findOne({_id: id}, function(err, user){
+            if(err){
+                console.log(err)
+            } else {
+                console.log(user);
+                socket.emit("getUser", user)
+            }
+        })
+    }
 
     cardUtils.data = cardData;
     return cardUtils;

@@ -5,6 +5,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
 # Runtime data
 pids
 *.pid
@@ -53,3 +54,6 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
+
+#configs
+src/config.js

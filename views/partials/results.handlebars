@@ -1,27 +1,170 @@
 <div id="results">
-    <div id="readerStatus"></div>
+    <!--Navigation-->
+    <nav class="light-blue lighten-1 navbar-fixed" role="navigation" id="navvy">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">{{heading}}</a>
+      <ul class="right hide-on-med-and-down">
+        <li id="addEmployee">
+            <a href="#">
+            <i class="material-icons prefix">person_add</i>
+            </a>
+        </li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger">
+          <i class="material-icons">menu</i>
+     </a>
+    </div>
+  </nav>
 
-        <div class="read">
-            <div>
-                <h2>Who's Logged In</h2>
+  <!--Side Navigation-->
+   <ul id="nav-mobile" class="sidenav">
+        <li >
+            <a href="#">
+            <i class="material-icons prefix right" id="closeSideNav">close</i>
+            </a>
+            
+        </li>
+        <li class="no-padding">
+           <ul class="show-on-med-and-down">
+            <!--<li><a href="#!"><i class="material-icons prefix">person_add</i></a></li>-->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Add User<i class="material-icons prefix">person_add</i></a></li>
+                    <li class="dropHeight">
+                    <form>
+                      <div class="row">
+                        <div class="input-field col s12">
+                            <i class="tiny material-icons prefix">account_circle</i>
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                            <i class="tiny material-icons prefix">lock</i>
+                            <input id="pass" type="password" class="validate">
+                            <label for="pass">Password</label>
+                        </div>
+                      </div>
+                      <p id="writeMessageResponse"></p>
+                      <button id="writeCardID" class="btn waves-effect waves-light btnCenter" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                      </button>
+                    </form>
+                    </li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">View Recent<i class="material-icons prefix">person_add</i></a></li>
+                        <li class="dropHeight">
+                    <form>
+                      <div class="row">
+                        <div class="input-field col s12">
+                            <i class="tiny material-icons prefix">account_circle</i>
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                            <i class="tiny material-icons prefix">lock</i>
+                            <input id="pass" type="password" class="validate">
+                            <label for="pass">Password</label>
+                        </div>
+                      </div>
+                      <p id="writeMessageResponse"></p>
+                      <button id="writeCardID" class="btn waves-effect waves-light btnCenter" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                      </button>
+                    </form>
+                    </li>
+            </ul>
+        </li>
+      </ul>
+
+    <!--Body of Page-->
+    <div class="body-holder-artraun">
+    <div class="row">
+      <div class="col s12 m6">
+
+        <div class="card">
+            <!--<img src="images/sample-1.jpg">-->
+            <div class="card-content">
+                <span class="card-title">Device info</span>
+                <h5>Device: {{hardware}}</h5>
+                <p>Type: {{card}}</p>
             </div>
-            <div id="allUsers"></div>
         </div>
-        <div class="write-container">
-            <div class="write">
-                <h1>Generate ID for Card</h1>
-                <form>
-                    <div>
-                    email <input id="email" type="email" name="email" placeholder="email" required> 
-                    </div>
-                    <div>
-                    password <input id="pass" type="password" name="pass" placeholder="password" required> 
-                    </div>
-                </form>
-                <button id="writeCardID">generate unique card id</button>
-                <p id="writeMessageResponse"></p>
+
+      </div>
+
+      <div class="col s12 m6">
+
+        <div class="card">
+            <!--<img src="images/sample-1.jpg">-->
+            <div class="card-content">
+                <span class="card-title">Reader Status</span>
+                <h5>User</h5>
+                <div id="readerStatus"></div>
             </div>
         </div>
+
+      </div>
+    </div>
+    
+        <!--Get all the users-->
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12" id="allUsers">
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <!--Write to card from desktop view-->
+        <div>
+        <div class="row toggle-cardWrite">
+          <div class="col s12 m6">
+            <div class="card">
+                <div class="card-content">
+                <span class="card-title left">Generate ID for Card</span><span class="right closem"><i class="material-icons prefix">close</i></span>
+                <div class="row">
+                    <form class="col s12">
+                      <div class="row">
+                        <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="pass" type="password" class="validate">
+                        <label for="pass">Password</label>
+                        </div>
+                      </div>
+                      <p id="writeMessageResponse"></p>
+                      <button id="writeCardID2" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                      </button>
+                    </form>
+                </div>
+                </div>
+            </div>
+          </div>
+        </div>
+       </div><!--end of card write-->
+
+       <div class="user-container">
+           <div class="user-data">
+               <div class="row">
+                   <i class="material-icons right user-close">close</i>
+                   <div class="col s12 m6">
+                       <div class="user">
+                           
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div><!--container for nav margin the Body-->
 </div>
 <script>
     let socket = io.connect('http://10.0.0.3:3000/');
@@ -29,27 +172,100 @@
     let rStatus = document.getElementById("readerStatus");
 
     let wCardId = document.getElementById("writeCardID");
+    let wCardIdB = document.getElementById("writeCardID2");
     let msgRes = document.getElementById("writeMessageResponse");
 
     let email = document.getElementById('email');
     let pass = document.getElementById('pass');
 
-    let allUsers = document.getElementById('allUsers')
+    let addEmployee = document.getElementById('addEmployee');
+    let showAddNew = document.querySelector('.toggle-cardWrite');
+    let close = document.querySelector('.closem');
+
+    let showSideNav = document.querySelector('.sidenav-trigger');
+    let sideNav = document.querySelector('.sidenav');
+    let closeSideNav = document.getElementById('closeSideNav');
+
+    let sideDropdownTrigger = document.querySelector('.dropdown-trigger');
+    let sideDropdown = document.querySelector('.dropHeight');
+
+    let allUsers = document.getElementById('allUsers');
+
+    let showUser = document.querySelector('.user-container');
+    let user = document.querySelector('.user');
+    let userClose = document.querySelector('.user-close');
+
+    let state = {};
+    state.rfid = false;
+
+    let tempId = [];
+
+    if(rStatus.innerHTML === ""){
+            rStatus.innerHTML = "card has been removed from reader"
+    }
+
+
+
+    addEmployee.onclick = () => {
+        //console.log('working');
+        if(showAddNew.style.display === 'flex'){
+            showAddNew.style.display = 'none';
+        } else {
+            showAddNew.style.display = 'flex'
+        }
+    }
+
+    close.onclick = () => {
+        showAddNew.style.display = 'none';
+    }
+
+    showSideNav.onclick = () => {
+        if(sideNav.style.transform = 'translateX(-105%)'){
+           sideNav.style.transform = 'translateX(0)';
+        }
+    }
+
+    closeSideNav.onclick = () => {
+        sideNav.style.transform = 'translateX(-105%)'
+    }
+
+    sideDropdownTrigger.onclick = () => {
+        if(sideDropdown.style.display === 'block'){
+            sideDropdown.style.display = "none";
+        } else {
+            sideDropdown.style.display = "block";
+        }
+    }
+
+    socket.emit('getUsers', 'give me the users');
 
     socket.on('trying', function(data) {
-        rStatus.innerHTML = `<h2>${data}</h2>`;
+        rStatus.innerHTML = `<p>${data}</p>`;
+        
         socket.emit('tryingRec', {
             message: "recieved someone is trying to log in"
         })
-        console.log(data)
+        console.log(data);
+        state.rfid = true;
     })
 
     socket.on('removed', function(data) {
-        rStatus.innerHTML = `<h2>${data}</h2>`;
+        rStatus.innerHTML = `<p>${data}</p>`;
         console.log(data);
+        state.rfid = false;
     })
 
     wCardId.onclick = () => {
+        if(email.value !== "" && email.value !== undefined && email.value !== null || pass.value !== "" && pass.value !== undefined && pass.value !== null){
+            socket.emit("writeData",{
+                message: "trying to wright data",
+                email: email.value,
+                pass: pass.value
+            })
+        }
+    }
+
+    wCardIdB.onclick = () => {
         if(email.value !== "" && email.value !== undefined && email.value !== null || pass.value !== "" && pass.value !== undefined && pass.value !== null){
             socket.emit("writeData",{
                 message: "trying to wright data",
@@ -64,9 +280,91 @@
         msgRes.innerHTML = data.message;
     })
 
+    //know that these get users function needs to be refactored into one
     socket.on('getAllUsers', function(data){
+        let temp =[];
         allUsers.innerHTML = data.map((item) => {
-            return JSON.stringify(item);
+            temp.push(item._id);
+            console.log(tempId);
+            for(i in item){
+            return `
+                <a href="#" id="${item._id}">
+                    <div class="card">
+                        <div class="card-content">
+                            <p class="card-title">${item.email}</p>
+                            <h6>login time: ${item.loginTime} </h6>
+                            <p>ID: ${item._id} </p>
+                        </div>
+                        <div class="card-content">    
+                            <p>login count: ${item.loginCount}</p>
+                        </div>
+                    </div>
+                </a>`
+            }
         })
+        tempId = [...new Set(temp)];
+        getUser();
     })
+
+    socket.on('getUsers', function(data){
+        let temp = [];
+        allUsers.innerHTML = data.map((item) => {
+            temp.push(item._id);
+            for(i in item){
+            return `
+                <a href="#" id="${item._id}">
+                    <div class="card">
+                        <div class="card-content">
+                            <p class="card-title">${item.email}</p>
+                            <h6>login time: ${item.loginTime} </h6>
+                            <p>ID: ${item._id} </p>
+                        </div>
+                        <div class="card-content">    
+                            <p>login count: ${item.loginCount}</p>
+                        </div>
+                    </div>
+                </a>`
+            }
+        })
+        
+        tempId = [...new Set(temp)];
+        getUser();
+    })
+
+    let getUser = () => {
+        if(tempId.length !== 0 && tempId !== null){
+            tempId.map((i) => {
+                console.log(i);
+                document.getElementById(i).onclick = () => {
+                    showUser.style.display = "flex";
+                    socket.emit('getUser', i);
+                };
+            })
+        }
+    }
+
+    /*allUsers.addEventListener('oninput', (e) => {
+        console.log(e,'changed');
+        getUser();
+    })*/
+
+    userClose.onclick = () => {
+        showUser.style.display = "none";
+    }
+
+    socket.on("getUser", (data) => {
+        console.log(data);
+        user.innerHTML = `<h4>${data.userInfo.name}</h4>
+                            <h6>login time: ${data.loginTime} </h6>
+                            <p>ID: ${data._id} </p>
+                            <p>Start Date: ${data.timeStamp}</p>   
+                            <p>login count: ${data.loginCount}</p>
+                            <h5>email: ${data.email}</h5>
+                            <h6>socialsec: ${data.userInfo.socialSec}</h6>
+                            <h6>birthday: ${data.userInfo.birthday}</h6>
+                            <h6>position: ${data.userInfo.position}</h6>
+                            <p>state: ${data.userInfo.address.name}</p>
+                            <p>street: ${data.userInfo.address.street}</p>
+                            <p>zipcode: ${data.userInfo.address.zipcode}</p>`
+    });
 </script>

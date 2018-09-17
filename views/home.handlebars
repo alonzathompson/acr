@@ -1,12 +1,30 @@
 <div>
-    {{> header heading=title}}
-    <div class="device-info">
-        <h3>Device: {{device}}</h3>
-        <p>Type: {{type}}</p>
-    </div>
-</div>
-<div>
     <div>
-      {{> results all=asciiData getData=getAsciiData raw=rawData}}
+      {{> results all=asciiData getData=getAsciiData raw=rawData hardware=device card=type heading=title}}
     </div>
+     <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Employee</h5>
+                <p class="grey-text text-lighten-4">Online Tracking</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">About</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Policy</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Projects</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">History</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Quarter Specs</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">artraun</a>
+            </div>
+          </div>
+        </footer>
 </div>

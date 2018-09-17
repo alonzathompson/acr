@@ -38,10 +38,12 @@ const a = acrLogic(io);
 app.get("/", (req,res) => {
      /*a.readDataBlocks().then((res) => {
          console.log(res);
-     });*/
+     });*/;
+
+     a.getAllUsersLogedIn()
 
     res.render('home', {
-        title: "Employee tracker",
+        title: "Employee",
         device: a.data.device,
         type: a.data.type,
         UID: a.data.UID,
@@ -83,11 +85,18 @@ io.on('connection', (socket) => {
     });
 
     socket.on('writeData', function(data){
-        console.log(data);
         a.writeUser(data.email, data.pass);
     })
 
     socket.on("getAllUsers", function(data){ 
         socket.emit("getAllUsers", a.data.cardUsers);
     });
+
+    socket.on("getUsers", function(data){ 
+        socket.emit("getUsers", a.data.cardUsers);
+    });
+
+    socket.on("getUser", function(data) {
+        a.getSingleUser(data);
+    })
 })
