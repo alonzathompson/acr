@@ -31,5 +31,4 @@
 # Plan
 ### Server for rfid 
 ### Remote Sever for rfid to interface with
-### Rest Api for for remote server to get our data
 
