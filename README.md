@@ -18,6 +18,7 @@
 ### 2. camera streaming
 ### 3. metrics for financials
 ### 4. Messaging on company activity
+### 5. Servers to Server request
 
 # What we will learn
 ## Working with API's
@@ -25,4 +26,10 @@
 ## Interfacing with phycial devices
 ## Crud Operations
 ## WebSockets
+## MongoDb with websockets
+
+# Plan
+### Server for rfid 
+### Remote Sever for rfid to interface with
+### Rest Api for for remote server to get our data
 
