@@ -1,6 +1,7 @@
 # Acr
 
 ## This is going to be an ongoing uart project using smartcard.js
+[current stage of project Youtube](https://www.youtube.com/watch?v=htZCrpLcDBU)
 
 ### At it's current stages it has a material design interface that:
 
@@ -31,4 +32,3 @@
 # Plan
 ### Server for rfid 
 ### Remote Sever for rfid to interface with
-
